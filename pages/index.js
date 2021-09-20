@@ -17,7 +17,27 @@ export default function Home({ items }) {
       </Head>
 
       <main className={styles.main}>
-        <hi className="title">Welcome to Nasa Gallery</hi>
+        <h1 className={styles.title}>Welcome to Nasa Gallery</h1>
+        <input
+          id="nasaSearch"
+          onChange={(e) => setSearch(e.target.value)}
+          className={styles.searchInput}
+          type="text"
+          placeholder="Search for an image"
+        ></input>
+        <button
+          className="button"
+          disabled={search === ""}
+          onClick={async () => {
+            const results = await fetch(
+              `https://images-api.nasa.gov/search?media_type=image&q=${search}`
+            );
+            const previews = await results.json();
+            setPhotos(await previews.collection.items);
+          }}
+        >
+          Find
+        </button>
         <div className={styles.fade}>
           <div className={styles.gridContainer}>
             {photos &&
