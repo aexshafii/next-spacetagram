@@ -7,8 +7,20 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 
-export default function ImagePreview({ thumbnailUrl, title }) {
+const useStyles = makeStyles((theme) => ({
+  mainContent: {
+    display: "box",
+    lineClamp: 2,
+    boxOrient: "vertical",
+    overflow: "hidden",
+  },
+}));
+
+export default function ImagePreview({ thumbnailUrl, title, description }) {
+  const classes = useStyles();
+
   return (
     <Card sx={{ maxWidth: 345, minWidth: 300 }}>
       <CardActionArea>
@@ -19,18 +31,22 @@ export default function ImagePreview({ thumbnailUrl, title }) {
           alt="green iguana"
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography gutterBottom variant="h6" component="div">
             {title}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
+          <Typography
+            variant="body2"
+            color="text.secondary"
+            className={classes.mainContent}
+            gutterBottom
+          >
+            {description}
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
         <Button size="small" color="primary">
-          Share
+          Like
         </Button>
       </CardActions>
     </Card>

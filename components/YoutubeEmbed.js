@@ -8,11 +8,6 @@ import { Button, CardActionArea, CardActions } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles((theme) => ({
-  cardContainer: {
-    flexGrow: 1,
-    margin: "10px",
-  },
-
   mainContent: {
     display: "box",
     lineClamp: 2,
@@ -33,7 +28,7 @@ function YoutubeEmbed({ videoUrl, title, description }) {
           alt="green iguana"
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography gutterBottom variant="h6" component="div">
             {title}
           </Typography>
           <Typography
