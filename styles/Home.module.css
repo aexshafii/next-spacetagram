@@ -39,6 +39,11 @@
   grid-column-gap: 20px;
   grid-row-gap: 20px;
 }
+@media (max-width: 1200px) {
+  .gridContainer {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
 @media (max-width: 800px) {
   .gridContainer {
     display: flex;
@@ -47,7 +52,6 @@
     flex-wrap: wrap;
     width: 100%;
     flex-direction: column;
-    min-width: 500px;
   }
 }
 
