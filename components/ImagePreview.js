@@ -1,12 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
-export default function ImagePreview({ thumbnailUrl, nasaId }) {
+export default function ImagePreview({ thumbnailUrl, title }) {
   return (
     <div>
-      <Link as={`/photo/${nasaId}`} href="/photo/[id]">
+      <Link as={`/photo/${title}`} href="/photo/[id]">
         <a>
           <Image width={250} height={125} src={thumbnailUrl} />
-          <div className="nasaId">Nasa ID: {nasaId}</div>
+          <div className="nasaId">Title: {title}</div>
         </a>
       </Link>
     </div>

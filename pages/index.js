@@ -1,13 +1,15 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
+import getConfig from "next/config";
 
 import { useState } from "react";
 import ImagePreview from "../components/ImagePreview";
 
 export default function Home({ items }) {
   const [search, setSearch] = useState("");
-  const [photos, setPhotos] = useState(items);
+  const [media, setMedia] = useState(items);
+  const [mediaType, setMediaType] = useState("");
 
   return (
     <div className={styles.container}>
@@ -29,23 +31,21 @@ export default function Home({ items }) {
           className="button"
           disabled={search === ""}
           onClick={async () => {
-            const results = await fetch(
-              `https://images-api.nasa.gov/search?media_type=image&q=${search}`
-            );
+            const results = await fetch(queryFull);
             const previews = await results.json();
-            setPhotos(await previews.collection.items);
+            setMedia(await previews);
           }}
         >
           Find
         </button>
         <div className={styles.fade}>
           <div className={styles.gridContainer}>
-            {photos &&
-              photos.map((preview) => (
+            {media &&
+              media.map((preview) => (
                 <ImagePreview
-                  key={preview.data[0].nasa_id}
-                  thumbnailUrl={preview.links[0].href}
-                  nasaId={preview.data[0].nasa_id}
+                  key={preview.url}
+                  thumbnailUrl={preview.url}
+                  title={preview.title}
                 />
               ))}
           </div>
@@ -55,11 +55,28 @@ export default function Home({ items }) {
   );
 }
 export async function getStaticProps() {
-  const results = await fetch(
-    "https://images-api.nasa.gov/search?media_type=image"
-  );
+  console.log("ala");
+
+  function lastWeek() {
+    var today = new Date();
+    var lastWeek = new Date(
+      today.getFullYear(),
+      today.getMonth(),
+      today.getDate() - 7
+    );
+    return lastWeek.toISOString().split("T")[0];
+  }
+  const { serverRuntimeConfig } = getConfig();
+
+  let queryUrl = "https://api.nasa.gov/planetary/apod?";
+  let queryKey = serverRuntimeConfig.mySecret;
+  let queryDate = "start_date=" + lastWeek() + "&";
+  let queryFull = queryUrl + queryKey + queryDate;
+
+  const results = await fetch(queryFull);
   const previews = await results.json();
-  const items = await previews.collection.items;
+  const items = await previews;
+
   return {
     props: { items },
   };
