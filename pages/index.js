@@ -2,7 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import getConfig from "next/config";
-
+import YoutubeEmbed from "../components/YoutubeEmbed";
 import { useState } from "react";
 import ImagePreview from "../components/ImagePreview";
 
@@ -10,7 +10,7 @@ export default function Home({ items }) {
   const [search, setSearch] = useState("");
   const [media, setMedia] = useState(items);
   const [mediaType, setMediaType] = useState("");
-
+  console.log(items);
   return (
     <div className={styles.container}>
       <Head>
@@ -41,13 +41,17 @@ export default function Home({ items }) {
         <div className={styles.fade}>
           <div className={styles.gridContainer}>
             {media &&
-              media.map((preview) => (
-                <ImagePreview
-                  key={preview.url}
-                  thumbnailUrl={preview.url}
-                  title={preview.title}
-                />
-              ))}
+              media.map((preview) =>
+                preview.media_type === "image" ? (
+                  <ImagePreview
+                    key={preview.url}
+                    thumbnailUrl={preview.url}
+                    title={preview.title}
+                  />
+                ) : (
+                  <YoutubeEmbed videoUrl={preview.url} />
+                )
+              )}
           </div>
         </div>
       </main>
