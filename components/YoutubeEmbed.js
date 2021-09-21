@@ -8,7 +8,7 @@ import { Button, CardActionArea, CardActions } from "@mui/material";
 
 function YoutubeEmbed({ videoUrl, title }) {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345, minWidth: 300 }}>
       <CardActionArea>
         <CardMedia
           component="iframe"

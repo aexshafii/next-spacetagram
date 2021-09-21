@@ -10,7 +10,7 @@ import { Button, CardActionArea, CardActions } from "@mui/material";
 
 export default function ImagePreview({ thumbnailUrl, title }) {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345, minWidth: 300 }}>
       <CardActionArea>
         <CardMedia
           component="img"
