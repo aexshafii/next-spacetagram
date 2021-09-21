@@ -48,12 +48,14 @@ export default function Home({ items }) {
                     thumbnailUrl={preview.url}
                     title={preview.title}
                     description={preview.explanation}
+                    date={preview.date}
                   />
                 ) : (
                   <YoutubeEmbed
                     videoUrl={preview.url}
                     title={preview.title}
                     description={preview.explanation}
+                    date={preview.date}
                   />
                 )
               )}
