@@ -31,7 +31,7 @@ export default function ImagePreview({ thumbnailUrl, title, description }) {
           alt="green iguana"
         />
         <CardContent>
-          <Typography gutterBottom variant="h6" component="div">
+          <Typography gutterBottom variant="body1" component="div">
             {title}
           </Typography>
           <Typography
