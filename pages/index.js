@@ -47,9 +47,14 @@ export default function Home({ items }) {
                     key={preview.url}
                     thumbnailUrl={preview.url}
                     title={preview.title}
+                    description={preview.explanation}
                   />
                 ) : (
-                  <YoutubeEmbed videoUrl={preview.url} title={preview.title} />
+                  <YoutubeEmbed
+                    videoUrl={preview.url}
+                    title={preview.title}
+                    description={preview.explanation}
+                  />
                 )
               )}
           </div>
