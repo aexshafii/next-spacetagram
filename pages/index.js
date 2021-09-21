@@ -49,7 +49,7 @@ export default function Home({ items }) {
                     title={preview.title}
                   />
                 ) : (
-                  <YoutubeEmbed videoUrl={preview.url} />
+                  <YoutubeEmbed videoUrl={preview.url} title={preview.title} />
                 )
               )}
           </div>
