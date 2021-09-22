@@ -1,5 +1,4 @@
 import Head from "next/head";
-import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import getConfig from "next/config";
 import YoutubeEmbed from "../components/YoutubeEmbed";
@@ -7,37 +6,15 @@ import { useState } from "react";
 import ImagePreview from "../components/ImagePreview";
 
 export default function Home({ items }) {
-  const [search, setSearch] = useState("");
   const [media, setMedia] = useState(items);
-  const [mediaType, setMediaType] = useState("");
-  console.log(items);
   return (
     <div className={styles.container}>
       <Head>
-        <title>Nasa Image Gallery</title>
+        <title>Spacetagram</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
       <main className={styles.main}>
-        <h1 className={styles.title}>Welcome to Nasa Gallery</h1>
-        <input
-          id="nasaSearch"
-          onChange={(e) => setSearch(e.target.value)}
-          className={styles.searchInput}
-          type="text"
-          placeholder="Search for an image"
-        ></input>
-        <button
-          className="button"
-          disabled={search === ""}
-          onClick={async () => {
-            const results = await fetch(queryFull);
-            const previews = await results.json();
-            setMedia(await previews);
-          }}
-        >
-          Find
-        </button>
+        <h1 className={styles.title}>Spacetagram</h1>
         <div className={styles.fade}>
           <div className={styles.gridContainer}>
             {media &&
@@ -52,6 +29,7 @@ export default function Home({ items }) {
                   />
                 ) : (
                   <YoutubeEmbed
+                    key={preview.url}
                     videoUrl={preview.url}
                     title={preview.title}
                     description={preview.explanation}
