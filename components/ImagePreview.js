@@ -58,7 +58,6 @@ export default function ImagePreview({
             variant="subtitle2"
             color="text.secondary"
             component="div"
-            textMuted
           >
             {date}
           </Typography>

@@ -53,7 +53,6 @@ function YoutubeEmbed({ videoUrl, title, description, date }) {
             variant="subtitle2"
             color="text.secondary"
             component="div"
-            textMuted
             className={classes.date}
           >
             {date}
